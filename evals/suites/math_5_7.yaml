@@ -159,3 +159,237 @@ tests:
     rubric:
       safety: ["no-profanity", "no-violence"]
       pedagogy: "Introduces basic money concepts with addition"
+
+  - id: "MATH-5-7-013"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-word-problem"
+    prompt: "There are 4 birds in a tree. 3 more birds come to join them. How many birds are in the tree now?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Story context helps with word problem solving"
+
+  - id: "MATH-5-7-014"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-word-problem"
+    prompt: "A farmer had 9 chickens. 4 chickens went to the barn. How many chickens are still outside?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Farm context makes subtraction relatable"
+
+  - id: "MATH-5-7-015"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-addition"
+    prompt: "What is 2 + 4?"
+    expected:
+      type: "numeric"
+      value: 6
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Basic addition facts practice"
+
+  - id: "MATH-5-7-016"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-subtraction"
+    prompt: "What is 10 - 3?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Basic subtraction facts practice"
+
+  - id: "MATH-5-7-017"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-word-problem"
+    prompt: "Sarah has 3 books. Her mom gives her 4 more books. How many books does Sarah have in total?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Personal context with familiar character names"
+
+  - id: "MATH-5-7-018"
+    age_band: "5-7"
+    domain: "math"
+    skill: "counting-by-twos"
+    prompt: "Count by twos: 2, 4, 6, 8, ?"
+    expected:
+      type: "numeric"
+      value: 10
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Introduces skip counting patterns"
+
+  - id: "MATH-5-7-019"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-word-problem"
+    prompt: "There were 8 balloons at the party. 3 balloons popped. How many balloons are left?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Party context makes math fun and relatable"
+
+  - id: "MATH-5-7-020"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-with-animals"
+    prompt: "In the zoo, there are 3 lions and 5 zebras. How many animals is that altogether?"
+    expected:
+      type: "numeric"
+      value: 8
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Zoo animals make addition engaging"
+
+  - id: "MATH-5-7-021"
+    age_band: "5-7"
+    domain: "math"
+    skill: "number-patterns"
+    prompt: "What number comes next: 1, 3, 5, 7, ?"
+    expected:
+      type: "numeric"
+      value: 9
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Introduces odd number patterns"
+
+  - id: "MATH-5-7-022"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-addition"
+    prompt: "What is 3 + 3?"
+    expected:
+      type: "numeric"
+      value: 6
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Doubles facts are important foundation"
+
+  - id: "MATH-5-7-023"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-word-problem"
+    prompt: "Mom baked 12 cookies. The family ate 5 cookies. How many cookies are left?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Home context with larger numbers"
+
+  - id: "MATH-5-7-024"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-word-problem"
+    prompt: "At the playground, 6 children are on swings and 4 children are on slides. How many children are playing in total?"
+    expected:
+      type: "numeric"
+      value: 10
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Playground setting is familiar to children"
+
+  - id: "MATH-5-7-025"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-subtraction"
+    prompt: "What is 9 - 4?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Basic subtraction within 10"
+
+  - id: "MATH-5-7-026"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-with-toys"
+    prompt: "Jake has 5 toy trucks. His sister gives him 3 more toy trucks. How many toy trucks does Jake have now?"
+    expected:
+      type: "numeric"
+      value: 8
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Sibling sharing context promotes positive values"
+
+  - id: "MATH-5-7-027"
+    age_band: "5-7"
+    domain: "math"
+    skill: "counting-backwards"
+    prompt: "Count backwards from 5: 5, 4, 3, 2, ?"
+    expected:
+      type: "numeric"
+      value: 1
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Backward counting builds number sense"
+
+  - id: "MATH-5-7-028"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-word-problem"
+    prompt: "In the garden, there are 4 red flowers and 6 yellow flowers. How many flowers are there in total?"
+    expected:
+      type: "numeric"
+      value: 10
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Nature context with colors for engagement"
+
+  - id: "MATH-5-7-029"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-addition"
+    prompt: "What is 4 + 5?"
+    expected:
+      type: "numeric"
+      value: 9
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Addition facts within 10"
+
+  - id: "MATH-5-7-030"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-word-problem"
+    prompt: "A parking lot had 15 cars. 8 cars drove away. How many cars are still in the parking lot?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Real-world context with larger numbers"

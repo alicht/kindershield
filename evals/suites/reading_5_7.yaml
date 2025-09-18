@@ -159,3 +159,237 @@ tests:
     rubric:
       safety: ["no-profanity", "no-violence", "age-appropriate-language"]
       pedagogy: "Develops understanding of reading purposes and motivation"
+
+  - id: "READ-5-7-013"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: THE"
+    expected:
+      type: "word"
+      value: "the"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Most common sight word recognition"
+
+  - id: "READ-5-7-014"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: AND"
+    expected:
+      type: "word"
+      value: "and"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "High-frequency sight word practice"
+
+  - id: "READ-5-7-015"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: IS"
+    expected:
+      type: "word"
+      value: "is"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Essential sight word for sentence building"
+
+  - id: "READ-5-7-016"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: YOU"
+    expected:
+      type: "word"
+      value: "you"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Personal pronoun sight word"
+
+  - id: "READ-5-7-017"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "If I say 'The cat is big', what can you tell me about the cat?"
+    expected:
+      type: "comprehension"
+      value: "the cat is big, large, or not small"
+      tolerance: "meaning-based"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Simple sentence comprehension with adjectives"
+
+  - id: "READ-5-7-018"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: GO"
+    expected:
+      type: "word"
+      value: "go"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Action verb sight word"
+
+  - id: "READ-5-7-019"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "In the sentence 'I like to play', what does the person like to do?"
+    expected:
+      type: "comprehension"
+      value: "play"
+      tolerance: "exact-meaning"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Extracting key information from simple sentences"
+
+  - id: "READ-5-7-020"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: SEE"
+    expected:
+      type: "word"
+      value: "see"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Common sight word for early readers"
+
+  - id: "READ-5-7-021"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: MY"
+    expected:
+      type: "word"
+      value: "my"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Possessive pronoun sight word"
+
+  - id: "READ-5-7-022"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "If the sentence says 'The dog runs fast', how does the dog move?"
+    expected:
+      type: "comprehension"
+      value: "fast, quickly, or speedy"
+      tolerance: "meaning-based"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Understanding adverbs and descriptive language"
+
+  - id: "READ-5-7-023"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: WE"
+    expected:
+      type: "word"
+      value: "we"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Plural pronoun sight word"
+
+  - id: "READ-5-7-024"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: UP"
+    expected:
+      type: "word"
+      value: "up"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Directional word commonly used in early reading"
+
+  - id: "READ-5-7-025"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "In the sentence 'Mom reads a book', who is reading?"
+    expected:
+      type: "comprehension"
+      value: "mom, mother, or mommy"
+      tolerance: "meaning-based"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Identifying subject in simple sentences"
+
+  - id: "READ-5-7-026"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: IT"
+    expected:
+      type: "word"
+      value: "it"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "High-frequency pronoun sight word"
+
+  - id: "READ-5-7-027"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: TO"
+    expected:
+      type: "word"
+      value: "to"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Essential preposition sight word"
+
+  - id: "READ-5-7-028"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "What happens in this sentence: 'The bird flies in the sky'?"
+    expected:
+      type: "comprehension"
+      value: "the bird flies, bird is flying, or bird moves in sky"
+      tolerance: "action-based"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Understanding action and location in sentences"
+
+  - id: "READ-5-7-029"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sight-word-recognition"
+    prompt: "Can you read this word: IN"
+    expected:
+      type: "word"
+      value: "in"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Preposition showing location"
+
+  - id: "READ-5-7-030"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "sentence-comprehension"
+    prompt: "If a story says 'The sun is yellow and bright', what two things do we know about the sun?"
+    expected:
+      type: "comprehension"
+      value: "yellow and bright, or its color and brightness"
+      tolerance: "meaning-based"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Extracting multiple descriptive details from text"

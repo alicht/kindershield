@@ -1,0 +1,312 @@
+{
+  "suite_name": "Math Skills for Ages 5-7",
+  "age_group": "5-7 years",
+  "tests": [
+    {
+      "id": "MATH-5-7-001",
+      "prompt": "You have 3 apples and get 2 more. How many apples do you have now?",
+      "response": "5",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 5,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 5,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 5.0 = 5"
+      }
+    },
+    {
+      "id": "MATH-5-7-002",
+      "prompt": "If you have 8 cookies and eat 3, how many cookies are left?",
+      "response": "3",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 5,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": false,
+        "score": 0.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 5,
+            "tolerance": 0
+          },
+          "numeric_result": "fail"
+        },
+        "reason": "Outside tolerance: 3.0 vs 5 (diff: 2.0, tolerance: 0)"
+      }
+    },
+    {
+      "id": "MATH-5-7-003",
+      "prompt": "Count from 1 to 10",
+      "response": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+      "rule": "math",
+      "expected": {
+        "type": "sequence",
+        "value": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+        "tolerance": "exact"
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "sequence",
+            "value": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10",
+            "tolerance": "exact"
+          },
+          "text_result": "pass"
+        },
+        "reason": "Text match found and all keywords present"
+      }
+    },
+    {
+      "id": "MATH-5-7-004",
+      "prompt": "What number comes right after 6?",
+      "response": "7",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 7,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 7,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 7.0 = 7"
+      }
+    },
+    {
+      "id": "MATH-5-7-005",
+      "prompt": "How many fingers do you have on one hand?",
+      "response": "5",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 5,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 5,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 5.0 = 5"
+      }
+    },
+    {
+      "id": "MATH-5-7-006",
+      "prompt": "What is 1 + 1?",
+      "response": "2",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 2,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 2,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 2.0 = 2"
+      }
+    },
+    {
+      "id": "MATH-5-7-007",
+      "prompt": "Which is bigger: 4 or 7?",
+      "response": "7",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 7,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 7,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 7.0 = 7"
+      }
+    },
+    {
+      "id": "MATH-5-7-008",
+      "prompt": "How many sides does a triangle have?",
+      "response": "3",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 3,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 3,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 3.0 = 3"
+      }
+    },
+    {
+      "id": "MATH-5-7-009",
+      "prompt": "You have 2 toy cars and your friend gives you 3 more. How many toy cars do you have altogether?",
+      "response": "5",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 5,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 5,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 5.0 = 5"
+      }
+    },
+    {
+      "id": "MATH-5-7-010",
+      "prompt": "If you have 5 stickers and give away 2, how many stickers do you still have?",
+      "response": "3",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 3,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 3,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 3.0 = 3"
+      }
+    },
+    {
+      "id": "MATH-5-7-011",
+      "prompt": "What number comes right before 9?",
+      "response": "8",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 8,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 8,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 8.0 = 8"
+      }
+    },
+    {
+      "id": "MATH-5-7-012",
+      "prompt": "If you have 3 pennies and find 2 more pennies, how many pennies do you have?",
+      "response": "5",
+      "rule": "math",
+      "expected": {
+        "type": "numeric",
+        "value": 5,
+        "tolerance": 0
+      },
+      "evaluation": {
+        "rule_name": "math",
+        "passed": true,
+        "score": 1.0,
+        "details": {
+          "expected": {
+            "type": "numeric",
+            "value": 5,
+            "tolerance": 0
+          },
+          "numeric_result": "pass"
+        },
+        "reason": "Exact match: 5.0 = 5"
+      }
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 11,
+    "failed": 1,
+    "average_score": 0.9166666666666666
+  }
+}
