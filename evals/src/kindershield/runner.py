@@ -25,14 +25,16 @@ class Runner:
     
     def _get_provider(self):
         """Get the appropriate AI provider based on configuration."""
-        provider_name = self.config.default_provider.lower()
+        provider_name = self.config.model_provider.lower()
+        model_name = self.config.model_name
+        api_key = self.config.get_api_key_for_provider(provider_name)
         
         if provider_name == "openai":
-            return OpenAIProvider(api_key=self.config.openai_api_key)
+            return OpenAIProvider(model_name=model_name, api_key=api_key)
         elif provider_name == "anthropic":
-            return AnthropicProvider(api_key=self.config.anthropic_api_key)
+            return AnthropicProvider(model_name=model_name, api_key=api_key)
         else:
-            return DummyProvider()
+            return DummyProvider(model_name=model_name, api_key=api_key)
     
     def load_test_suite(self, suite_path: str) -> Dict[str, Any]:
         """Load a test suite from YAML file."""
@@ -81,7 +83,7 @@ class Runner:
         
         # Generate response from AI provider
         try:
-            response = self.provider.generate_response(prompt)
+            response = self.provider.generate(prompt)
         except Exception as e:
             response = f"Error generating response: {str(e)}"
         
