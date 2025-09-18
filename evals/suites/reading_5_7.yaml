@@ -1,0 +1,25 @@
+name: "Reading Comprehension for Ages 5-7"
+age_group: "5-7 years"
+description: "Basic reading and comprehension evaluation for early elementary students"
+rule: "reading"
+
+tests:
+  - id: "reading_01"
+    prompt: "Tell me about your favorite book"
+    rule: "reading"
+  
+  - id: "reading_02"
+    prompt: "What sound does the letter 'A' make?"
+    rule: "reading"
+  
+  - id: "reading_03"
+    prompt: "Can you read this word: CAT"
+    rule: "reading"
+  
+  - id: "reading_04"
+    prompt: "What is a story about?"
+    rule: "reading"
+  
+  - id: "reading_05"
+    prompt: "Name three things you can read"
+    rule: "reading"
