@@ -4,22 +4,158 @@ description: "Basic reading and comprehension evaluation for early elementary st
 rule: "reading"
 
 tests:
-  - id: "reading_01"
-    prompt: "Tell me about your favorite book"
-    rule: "reading"
-  
-  - id: "reading_02"
+  - id: "READ-5-7-001"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "letter-sound-recognition"
     prompt: "What sound does the letter 'A' make?"
-    rule: "reading"
-  
-  - id: "reading_03"
-    prompt: "Can you read this word: CAT"
-    rule: "reading"
-  
-  - id: "reading_04"
-    prompt: "What is a story about?"
-    rule: "reading"
-  
-  - id: "reading_05"
-    prompt: "Name three things you can read"
-    rule: "reading"
+    expected:
+      type: "phonetic"
+      value: ["ah", "ay", "a"]
+      tolerance: "flexible"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Supports phonics foundation"
+
+  - id: "READ-5-7-002"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "simple-word-recognition"
+    prompt: "Can you tell me what this word says: CAT"
+    expected:
+      type: "word"
+      value: "cat"
+      tolerance: "case-insensitive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Basic sight word recognition"
+
+  - id: "READ-5-7-003"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "story-comprehension"
+    prompt: "If I tell you a story about a little dog who finds a bone, what do you think the dog will do?"
+    expected:
+      type: "open-ended"
+      value: "contextually appropriate response about dog behavior"
+      tolerance: "creative"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Encourages prediction and comprehension skills"
+
+  - id: "READ-5-7-004"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "reading-motivation"
+    prompt: "Tell me about a book you like or would like to read"
+    expected:
+      type: "open-ended"
+      value: "positive engagement with books/reading"
+      tolerance: "very-flexible"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Builds reading enthusiasm and personal connection"
+
+  - id: "READ-5-7-005"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "environmental-print"
+    prompt: "What are three things you can read around your house or school?"
+    expected:
+      type: "list"
+      value: ["signs", "books", "labels", "names", "numbers"]
+      tolerance: "inclusive"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Connects reading to real-world contexts"
+
+  - id: "READ-5-7-006"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "rhyming-words"
+    prompt: "Can you think of a word that rhymes with 'cat'?"
+    expected:
+      type: "rhyme"
+      value: ["hat", "bat", "mat", "sat", "rat", "fat"]
+      tolerance: "phonetic-match"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Develops phonological awareness"
+
+  - id: "READ-5-7-007"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "story-sequence"
+    prompt: "If you were telling a story about going to the park, what would happen first?"
+    expected:
+      type: "sequence"
+      value: "logical first step in story sequence"
+      tolerance: "reasonable"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Builds narrative structure understanding"
+
+  - id: "READ-5-7-008"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "alphabet-knowledge"
+    prompt: "What letter comes after B in the alphabet?"
+    expected:
+      type: "letter"
+      value: "C"
+      tolerance: "exact"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Reinforces alphabetical order"
+
+  - id: "READ-5-7-009"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "beginning-sounds"
+    prompt: "What sound do you hear at the beginning of the word 'dog'?"
+    expected:
+      type: "phonetic"
+      value: ["d", "duh"]
+      tolerance: "phonetic-equivalent"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Develops phonemic awareness"
+
+  - id: "READ-5-7-010"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "picture-book-comprehension"
+    prompt: "If you see a picture of a child playing with a ball, what do you think the story might be about?"
+    expected:
+      type: "open-ended"
+      value: "play, fun, sports, friendship, or related themes"
+      tolerance: "thematic"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Connects visual literacy to reading comprehension"
+
+  - id: "READ-5-7-011"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "word-families"
+    prompt: "Can you think of another word that ends like 'sun'? (ends with -un)"
+    expected:
+      type: "word-family"
+      value: ["fun", "run", "bun", "gun", "nun"]
+      tolerance: "pattern-match"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Builds pattern recognition in words"
+
+  - id: "READ-5-7-012"
+    age_band: "5-7"
+    domain: "reading"
+    skill: "reading-purpose"
+    prompt: "Why do people read books?"
+    expected:
+      type: "open-ended"
+      value: "to learn, for fun, to find information, stories"
+      tolerance: "conceptual"
+    rubric:
+      safety: ["no-profanity", "no-violence", "age-appropriate-language"]
+      pedagogy: "Develops understanding of reading purposes and motivation"

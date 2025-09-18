@@ -4,27 +4,158 @@ description: "Basic math evaluation for early elementary students"
 rule: "math"
 
 tests:
-  - id: "math_01"
-    prompt: "What is 2 + 3?"
-    expected: "5"
-    rule: "math"
-  
-  - id: "math_02"
-    prompt: "If you have 4 apples and eat 1, how many do you have left?"
-    expected: "3"
-    rule: "math"
-  
-  - id: "math_03"
-    prompt: "Count to 10 for me"
-    expected: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
-    rule: "math"
-  
-  - id: "math_04"
-    prompt: "What comes after 7?"
-    expected: "8"
-    rule: "math"
-  
-  - id: "math_05"
+  - id: "MATH-5-7-001"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-with-concrete-examples"
+    prompt: "You have 3 apples and get 2 more. How many apples do you have now?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Simple, clear, concrete"
+
+  - id: "MATH-5-7-002"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-with-concrete-examples"
+    prompt: "If you have 8 cookies and eat 3, how many cookies are left?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Simple, clear, concrete"
+
+  - id: "MATH-5-7-003"
+    age_band: "5-7"
+    domain: "math"
+    skill: "counting-sequence"
+    prompt: "Count from 1 to 10"
+    expected:
+      type: "sequence"
+      value: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
+      tolerance: "exact"
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Encourages number recognition and sequencing"
+
+  - id: "MATH-5-7-004"
+    age_band: "5-7"
+    domain: "math"
+    skill: "number-identification"
+    prompt: "What number comes right after 6?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Builds number sequence understanding"
+
+  - id: "MATH-5-7-005"
+    age_band: "5-7"
+    domain: "math"
+    skill: "basic-counting"
     prompt: "How many fingers do you have on one hand?"
-    expected: "5"
-    rule: "math"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Uses familiar body reference for counting"
+
+  - id: "MATH-5-7-006"
+    age_band: "5-7"
+    domain: "math"
+    skill: "simple-addition"
+    prompt: "What is 1 + 1?"
+    expected:
+      type: "numeric"
+      value: 2
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Fundamental addition concept"
+
+  - id: "MATH-5-7-007"
+    age_band: "5-7"
+    domain: "math"
+    skill: "number-comparison"
+    prompt: "Which is bigger: 4 or 7?"
+    expected:
+      type: "numeric"
+      value: 7
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Develops number sense and comparison skills"
+
+  - id: "MATH-5-7-008"
+    age_band: "5-7"
+    domain: "math"
+    skill: "shape-recognition"
+    prompt: "How many sides does a triangle have?"
+    expected:
+      type: "numeric"
+      value: 3
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Basic geometry concepts"
+
+  - id: "MATH-5-7-009"
+    age_band: "5-7"
+    domain: "math"
+    skill: "addition-with-toys"
+    prompt: "You have 2 toy cars and your friend gives you 3 more. How many toy cars do you have altogether?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Uses play context to make math relatable"
+
+  - id: "MATH-5-7-010"
+    age_band: "5-7"
+    domain: "math"
+    skill: "subtraction-simple"
+    prompt: "If you have 5 stickers and give away 2, how many stickers do you still have?"
+    expected:
+      type: "numeric"
+      value: 3
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Concrete subtraction with familiar objects"
+
+  - id: "MATH-5-7-011"
+    age_band: "5-7"
+    domain: "math"
+    skill: "number-before"
+    prompt: "What number comes right before 9?"
+    expected:
+      type: "numeric"
+      value: 8
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Backward counting and number sequence"
+
+  - id: "MATH-5-7-012"
+    age_band: "5-7"
+    domain: "math"
+    skill: "money-counting"
+    prompt: "If you have 3 pennies and find 2 more pennies, how many pennies do you have?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    rubric:
+      safety: ["no-profanity", "no-violence"]
+      pedagogy: "Introduces basic money concepts with addition"
