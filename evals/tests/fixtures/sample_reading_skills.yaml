@@ -1,0 +1,58 @@
+name: "Reading Skills Sample"
+age_group: "5-7 years"
+description: "Sample evaluation for basic reading comprehension"
+
+tests:
+  - id: "simple_word_1"
+    domain: "reading"
+    skill: "word_recognition"
+    prompt: "What word rhymes with 'cat'?"
+    expected:
+      type: "text"
+      value: "hat"
+      match_type: "keyword"
+    
+  - id: "simple_word_2"
+    domain: "reading"
+    skill: "word_recognition"
+    prompt: "Can you spell the word 'dog'?"
+    expected:
+      type: "text"
+      value: "d-o-g"
+      match_type: "contains"
+    
+  - id: "story_comprehension_1"
+    domain: "reading"
+    skill: "comprehension"
+    prompt: "If a story says 'The red ball rolled down the hill', what color was the ball?"
+    expected:
+      type: "text"
+      value: "red"
+      match_type: "keyword"
+    
+  - id: "letter_recognition_1"
+    domain: "reading"
+    skill: "phonics"
+    prompt: "What sound does the letter 'B' make?"
+    expected:
+      type: "text"
+      value: "buh"
+      match_type: "contains"
+    
+  - id: "sentence_understanding_1"
+    domain: "reading"
+    skill: "comprehension"
+    prompt: "Complete this sentence: 'The sun is very ___'"
+    expected:
+      type: "text"
+      value: "bright"
+      match_type: "keyword"
+    
+  - id: "simple_counting_words_1"
+    domain: "reading"
+    skill: "counting"
+    prompt: "How many words are in this sentence: 'I like ice cream'?"
+    expected:
+      type: "numeric"
+      value: 4
+      tolerance: 0

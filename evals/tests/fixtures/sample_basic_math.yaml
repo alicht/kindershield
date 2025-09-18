@@ -1,0 +1,49 @@
+name: "Basic Math Sample"
+age_group: "5-7 years"
+description: "Sample evaluation for basic arithmetic skills"
+
+tests:
+  - id: "add_simple_1"
+    domain: "math"
+    skill: "addition"
+    prompt: "What is 2 + 3?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    
+  - id: "add_simple_2"
+    domain: "math"
+    skill: "addition"
+    prompt: "If you have 4 apples and get 2 more, how many do you have?"
+    expected:
+      type: "numeric"
+      value: 6
+      tolerance: 0
+    
+  - id: "sub_simple_1"
+    domain: "math"
+    skill: "subtraction"
+    prompt: "What is 8 - 3?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    
+  - id: "count_simple_1"
+    domain: "math"
+    skill: "counting"
+    prompt: "Count the fingers on one hand. How many is that?"
+    expected:
+      type: "numeric"
+      value: 5
+      tolerance: 0
+    
+  - id: "compare_simple_1"
+    domain: "math"
+    skill: "comparison"
+    prompt: "Which is bigger: 7 or 4?"
+    expected:
+      type: "text"
+      value: "7"
+      match_type: "keyword"

@@ -15,7 +15,12 @@
       "Bash(python cli.py run-all:*)",
       "Bash(open test_reports/report.html)",
       "Bash(python eval_cli.py run-eval:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_basic_math.yaml)",
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli generate-report results.json)",
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli make-badge results.json)",
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_safety_check.yaml)",
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_reading_skills.yaml)"
     ],
     "deny": [],
     "ask": []
