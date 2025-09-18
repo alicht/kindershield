@@ -9,7 +9,13 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(python -m pytest tests/test_scoring_functions.py -v)",
-      "Bash(python cli.py eval:*)"
+      "Bash(python cli.py eval:*)",
+      "Bash(git reset:*)",
+      "Bash(python cli.py run_all:*)",
+      "Bash(python cli.py run-all:*)",
+      "Bash(open test_reports/report.html)",
+      "Bash(python eval_cli.py run-eval:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []
