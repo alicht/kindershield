@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" role="img" aria-label="KidSafe: 94.6%">
+    <title>KidSafe: 94.6%</title>
+    <linearGradient id="s" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <clipPath id="r">
+        <rect width="200" height="40" rx="6" fill="#fff"/>
+    </clipPath>
+    <g clip-path="url(#r)">
+        <rect width="120" height="40" fill="#555"/>
+        <rect x="120" width="80" height="40" fill="#4c1"/>
+        <rect width="200" height="40" fill="url(#s)"/>
+    </g>
+    <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="140">
+        <text aria-hidden="true" x="600" y="300" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="1000">KidSafe</text>
+        <text x="600" y="280" transform="scale(.1)" fill="#fff" textLength="1000">KidSafe</text>
+        <text aria-hidden="true" x="1600" y="300" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="700">94.6%</text>
+        <text x="1600" y="280" transform="scale(.1)" fill="#fff" textLength="700">94.6%</text>
+    </g>
+</svg>

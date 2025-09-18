@@ -20,7 +20,8 @@
       "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli generate-report results.json)",
       "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli make-badge results.json)",
       "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_safety_check.yaml)",
-      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_reading_skills.yaml)"
+      "Bash(PYTHONPATH=/Users/AviNew/kindershield/evals/src python -m kindershield.cli run-eval tests/fixtures/sample_reading_skills.yaml)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []
