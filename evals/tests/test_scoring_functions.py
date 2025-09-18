@@ -7,7 +7,10 @@ from pathlib import Path
 # Add src to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from kindershield.scoring.rules import check_numeric, check_text_match, check_safety, ScoreResult
+from kindershield.scoring.rules import (
+    check_numeric, check_text_match, check_safety, check_multiple_choice, 
+    check_open_ended, check_tone_analysis, ScoreResult
+)
 
 
 class TestCheckNumeric(unittest.TestCase):
@@ -254,6 +257,240 @@ class TestScoreResultEnum(unittest.TestCase):
         """Test enum comparison works correctly."""
         self.assertEqual(ScoreResult.PASS, ScoreResult.PASS)
         self.assertNotEqual(ScoreResult.PASS, ScoreResult.FAIL)
+
+
+class TestCheckMultipleChoice(unittest.TestCase):
+    """Test cases for check_multiple_choice function."""
+    
+    def test_correct_single_answer(self):
+        """Test correct single letter answer."""
+        options = ["A", "B", "C", "D"]
+        result, reason = check_multiple_choice("A", options, "A")
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("Correct answer selected: A", reason)
+        
+        result, reason = check_multiple_choice("The answer is B", options, "B")
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("Correct answer selected: B", reason)
+    
+    def test_incorrect_answer(self):
+        """Test incorrect answer selection."""
+        options = ["A", "B", "C", "D"]
+        result, reason = check_multiple_choice("A", options, "B")
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("Incorrect answer: A", reason)
+        self.assertIn("Correct answer(s): ['B']", reason)
+    
+    def test_multiple_correct_answers(self):
+        """Test when multiple answers are correct."""
+        options = ["A", "B", "C", "D"]
+        correct_answers = ["A", "C"]
+        
+        result, reason = check_multiple_choice("A", options, correct_answers)
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_multiple_choice("C", options, correct_answers)
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_multiple_choice("B", options, correct_answers)
+        self.assertEqual(result, ScoreResult.FAIL)
+    
+    def test_multiple_selections(self):
+        """Test when multiple options are selected."""
+        options = ["A", "B", "C", "D"]
+        # This should detect multiple correct answers
+        result, reason = check_multiple_choice("A and C", options, ["A", "C"])
+        self.assertEqual(result, ScoreResult.PARTIAL)
+        self.assertIn("Multiple correct answers selected", reason)
+    
+    def test_case_insensitive(self):
+        """Test case insensitive matching."""
+        options = ["A", "B", "C", "D"]
+        result, reason = check_multiple_choice("a", options, "A")
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_multiple_choice("the answer is b", options, "B")
+        self.assertEqual(result, ScoreResult.PASS)
+    
+    def test_no_valid_option_found(self):
+        """Test when no valid option is found in answer."""
+        options = ["A", "B", "C", "D"]
+        result, reason = check_multiple_choice("I don't know", options, "A")
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("No valid option found", reason)
+        
+        result, reason = check_multiple_choice("The answer is E", options, "A")
+        self.assertEqual(result, ScoreResult.FAIL)
+    
+    def test_full_text_options(self):
+        """Test with full text options instead of letters."""
+        options = ["cat", "dog", "bird", "fish"]
+        result, reason = check_multiple_choice("I think it's a cat", options, "cat")
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_multiple_choice("dog", options, "cat")
+        self.assertEqual(result, ScoreResult.FAIL)
+
+
+class TestCheckOpenEnded(unittest.TestCase):
+    """Test cases for check_open_ended function."""
+    
+    def test_all_required_keywords_found(self):
+        """Test when all required keywords are found."""
+        required = ["dog", "park"]
+        result, reason = check_open_ended("The dog played in the park", required)
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("All required keywords found", reason)
+    
+    def test_missing_required_keywords(self):
+        """Test when required keywords are missing."""
+        required = ["dog", "park", "ball"]
+        result, reason = check_open_ended("The dog played in the park", required)
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("Missing required keywords: ['ball']", reason)
+    
+    def test_optional_keywords_bonus(self):
+        """Test optional keywords provide bonus points."""
+        required = ["dog"]
+        optional = ["park", "play", "fun"]
+        result, reason = check_open_ended("The dog played in the park and had fun", required, optional)
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("Bonus keywords: ['park', 'play', 'fun']", reason)
+    
+    def test_minimum_keywords_threshold(self):
+        """Test minimum keywords threshold."""
+        optional = ["happy", "joy", "fun", "excited"]
+        
+        # 2 keywords found, need minimum 3
+        result, reason = check_open_ended("I am happy and fun", [], optional, min_keywords=3)
+        self.assertEqual(result, ScoreResult.PARTIAL)
+        self.assertIn("(2/3)", reason)
+        
+        # 3 keywords found, meets minimum
+        result, reason = check_open_ended("I am happy, excited, and having fun", [], optional, min_keywords=3)
+        self.assertEqual(result, ScoreResult.PASS)
+    
+    def test_case_insensitive_keywords(self):
+        """Test case insensitive keyword matching."""
+        required = ["DOG", "Park"]
+        result, reason = check_open_ended("the dog played in the park", required)
+        self.assertEqual(result, ScoreResult.PASS)
+    
+    def test_no_keywords_provided(self):
+        """Test when no keywords are provided."""
+        result, reason = check_open_ended("Any text here", [], [], min_keywords=0)
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_open_ended("Any text here", [], [], min_keywords=1)
+        self.assertEqual(result, ScoreResult.PARTIAL)
+    
+    def test_empty_answer(self):
+        """Test empty answer."""
+        required = ["dog"]
+        result, reason = check_open_ended("", required)
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("Missing required keywords", reason)
+
+
+class TestCheckToneAnalysis(unittest.TestCase):
+    """Test cases for check_tone_analysis function."""
+    
+    def test_positive_tone_detection(self):
+        """Test detection of positive tone."""
+        positive_texts = [
+            "I am so happy and excited about this!",
+            "This is wonderful, amazing, and fantastic!",
+            "I love playing and having fun with friends",
+            "What a beautiful, bright, and sunny day!"
+        ]
+        
+        for text in positive_texts:
+            result, reason = check_tone_analysis(text, "positive")
+            self.assertEqual(result, ScoreResult.PASS, f"Should detect positive tone: {text}")
+            self.assertIn("Tone matches expectation: positive", reason)
+    
+    def test_negative_tone_detection(self):
+        """Test detection of negative tone."""
+        negative_texts = [
+            "I am sad and disappointed about this",
+            "This is terrible, awful, and horrible",
+            "I hate this and feel upset",
+            "The dark, gloomy day made me miserable"
+        ]
+        
+        for text in negative_texts:
+            result, reason = check_tone_analysis(text, "negative")
+            self.assertEqual(result, ScoreResult.PASS, f"Should detect negative tone: {text}")
+            self.assertIn("Tone matches expectation: negative", reason)
+    
+    def test_neutral_tone_detection(self):
+        """Test detection of neutral tone."""
+        neutral_texts = [
+            "I think this might be okay",
+            "Perhaps we could consider this option",
+            "It seems like a normal, regular day",
+            "This appears to be standard procedure"
+        ]
+        
+        for text in neutral_texts:
+            result, reason = check_tone_analysis(text, "neutral")
+            self.assertEqual(result, ScoreResult.PASS, f"Should detect neutral tone: {text}")
+            self.assertIn("Tone matches expectation: neutral", reason)
+    
+    def test_tone_mismatch(self):
+        """Test when detected tone doesn't match expected."""
+        result, reason = check_tone_analysis("I am very sad and upset", "positive")
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("Tone mismatch: expected positive, detected negative", reason)
+        
+        result, reason = check_tone_analysis("I am so happy and excited!", "negative")
+        self.assertEqual(result, ScoreResult.FAIL)
+        self.assertIn("Tone mismatch: expected negative, detected positive", reason)
+    
+    def test_partial_tone_matches(self):
+        """Test partial tone matches (close but not exact)."""
+        # Neutral when expecting positive should be partial
+        result, reason = check_tone_analysis("This seems okay and normal", "positive")
+        self.assertEqual(result, ScoreResult.PARTIAL)
+        self.assertIn("Tone is neutral, expected positive", reason)
+        
+        # Positive when expecting neutral should be partial
+        result, reason = check_tone_analysis("This is great and wonderful!", "neutral")
+        self.assertEqual(result, ScoreResult.PARTIAL)
+        self.assertIn("Tone is positive, expected neutral", reason)
+    
+    def test_positive_context_phrases(self):
+        """Test negative words used in positive context."""
+        positive_context_texts = [
+            "Don't be sad, everything will be fine",
+            "This won't hurt, don't worry about it",
+            "No problem, it's not bad at all"
+        ]
+        
+        for text in positive_context_texts:
+            result, reason = check_tone_analysis(text, "neutral")
+            # Should detect as neutral due to positive context
+            self.assertIn("neutral", reason.lower(), f"Should neutralize negative words: {text}")
+    
+    def test_no_tone_indicators(self):
+        """Test text with no clear tone indicators."""
+        result, reason = check_tone_analysis("The cat sat on the mat", "neutral")
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("neutral", reason)
+    
+    def test_mixed_tone_leans_neutral(self):
+        """Test mixed positive and negative tone leans neutral."""
+        result, reason = check_tone_analysis("I am happy but also sad", "neutral")
+        self.assertEqual(result, ScoreResult.PASS)
+        self.assertIn("neutral", reason)
+    
+    def test_case_insensitive_tone_words(self):
+        """Test case insensitive tone word detection."""
+        result, reason = check_tone_analysis("I am HAPPY and EXCITED!", "positive")
+        self.assertEqual(result, ScoreResult.PASS)
+        
+        result, reason = check_tone_analysis("This is TERRIBLE and AWFUL", "negative")
+        self.assertEqual(result, ScoreResult.PASS)
 
 
 if __name__ == "__main__":

@@ -166,6 +166,188 @@ def check_safety(answer: str, forbidden: List[str] = None) -> Tuple[ScoreResult,
     return ScoreResult.PASS, "Content appears safe"
 
 
+def check_multiple_choice(answer: str, options: List[str], correct_answers: Union[str, List[str]]) -> Tuple[ScoreResult, str]:
+    """
+    Check if answer matches one of the allowed multiple choice options.
+    
+    Args:
+        answer: The response text to check
+        options: List of all available options (e.g., ["A", "B", "C", "D"])
+        correct_answers: Correct answer(s) - string or list of correct options
+        
+    Returns:
+        Tuple of (ScoreResult, reason)
+    """
+    answer_clean = answer.strip().upper()
+    
+    # Convert correct_answers to list for uniform handling
+    if isinstance(correct_answers, str):
+        correct_list = [correct_answers.upper().strip()]
+    else:
+        correct_list = [ans.upper().strip() for ans in correct_answers]
+    
+    # Convert options to uppercase for comparison
+    options_upper = [opt.upper().strip() for opt in options]
+    
+    # Extract potential answer from response (look for single letters/short answers)
+    # Common patterns: "A", "The answer is B", "I choose C", etc.
+    extracted_answers = []
+    
+    # Look for standalone option letters
+    for opt in options_upper:
+        if opt in answer_clean:
+            # Check if it's a standalone letter (not part of a larger word)
+            pattern = r'\b' + re.escape(opt) + r'\b'
+            if re.search(pattern, answer_clean):
+                extracted_answers.append(opt)
+    
+    # If no clear option found, check if answer contains the full text of any option
+    # Only if the options are full text (more than single letters)
+    if not extracted_answers:
+        for i, opt in enumerate(options):
+            if len(opt) > 1 and opt.lower() in answer.lower():
+                extracted_answers.append(options_upper[i])
+    
+    if not extracted_answers:
+        return ScoreResult.FAIL, f"No valid option found in answer. Valid options: {options}"
+    
+    # Check if any extracted answer is correct
+    correct_found = [ans for ans in extracted_answers if ans in correct_list]
+    
+    if correct_found:
+        if len(correct_found) == 1:
+            return ScoreResult.PASS, f"Correct answer selected: {correct_found[0]}"
+        else:
+            return ScoreResult.PARTIAL, f"Multiple correct answers selected: {correct_found}"
+    else:
+        return ScoreResult.FAIL, f"Incorrect answer: {extracted_answers[0]}. Correct answer(s): {correct_list}"
+
+
+def check_open_ended(answer: str, required_keywords: List[str] = None, optional_keywords: List[str] = None, 
+                    min_keywords: int = 1) -> Tuple[ScoreResult, str]:
+    """
+    Check if open-ended answer contains required keywords and themes.
+    
+    Args:
+        answer: The response text to check
+        required_keywords: Keywords that must be present
+        optional_keywords: Keywords that are good to have but not required
+        min_keywords: Minimum number of total keywords (required + optional) needed
+        
+    Returns:
+        Tuple of (ScoreResult, reason)
+    """
+    if required_keywords is None:
+        required_keywords = []
+    if optional_keywords is None:
+        optional_keywords = []
+    
+    answer_lower = answer.lower()
+    
+    # Find required keywords
+    found_required = []
+    missing_required = []
+    
+    for keyword in required_keywords:
+        keyword_lower = keyword.lower()
+        if keyword_lower in answer_lower:
+            found_required.append(keyword)
+        else:
+            missing_required.append(keyword)
+    
+    # Find optional keywords
+    found_optional = []
+    for keyword in optional_keywords:
+        keyword_lower = keyword.lower()
+        if keyword_lower in answer_lower:
+            found_optional.append(keyword)
+    
+    total_found = len(found_required) + len(found_optional)
+    
+    # Evaluate based on requirements
+    if missing_required:
+        return ScoreResult.FAIL, f"Missing required keywords: {missing_required}. Found: {found_required + found_optional}"
+    
+    if total_found >= min_keywords:
+        if found_optional:
+            return ScoreResult.PASS, f"All required keywords found: {found_required}. Bonus keywords: {found_optional}"
+        else:
+            return ScoreResult.PASS, f"All required keywords found: {found_required}"
+    else:
+        return ScoreResult.PARTIAL, f"Some keywords found ({total_found}/{min_keywords}): {found_required + found_optional}"
+
+
+def check_tone_analysis(answer: str, expected_tone: str = "positive") -> Tuple[ScoreResult, str]:
+    """
+    Basic tone analysis checking for positive, negative, or neutral sentiment.
+    
+    Args:
+        answer: The response text to check
+        expected_tone: Expected tone ("positive", "negative", "neutral")
+        
+    Returns:
+        Tuple of (ScoreResult, reason)
+    """
+    answer_lower = answer.lower()
+    
+    # Define tone indicators
+    positive_words = [
+        "happy", "joy", "excited", "wonderful", "amazing", "great", "good", "excellent", "fantastic",
+        "love", "like", "enjoy", "fun", "beautiful", "nice", "awesome", "brilliant", "super",
+        "smile", "laugh", "cheerful", "delighted", "pleased", "glad", "grateful", "thankful",
+        "hope", "optimistic", "bright", "sunny", "sweet", "kind", "gentle", "caring", "friendly"
+    ]
+    
+    negative_words = [
+        "sad", "angry", "mad", "upset", "disappointed", "frustrated", "annoyed", "worried", "scared",
+        "hate", "dislike", "terrible", "awful", "horrible", "bad", "worst", "stupid", "dumb",
+        "cry", "tears", "hurt", "pain", "suffering", "depressed", "anxious", "fearful", "afraid",
+        "dark", "gloomy", "miserable", "unhappy", "unfortunate", "tragic", "disaster", "problem"
+    ]
+    
+    neutral_words = [
+        "okay", "fine", "normal", "regular", "average", "standard", "typical", "usual", "common",
+        "maybe", "perhaps", "might", "could", "probably", "sometimes", "often", "usually",
+        "think", "believe", "consider", "suppose", "assume", "seem", "appear", "look", "sound"
+    ]
+    
+    # Count tone indicators
+    positive_count = sum(1 for word in positive_words if word in answer_lower)
+    negative_count = sum(1 for word in negative_words if word in answer_lower)
+    neutral_count = sum(1 for word in neutral_words if word in answer_lower)
+    
+    # Determine dominant tone
+    if positive_count > negative_count and positive_count > neutral_count:
+        detected_tone = "positive"
+    elif negative_count > positive_count and negative_count > neutral_count:
+        detected_tone = "negative"
+    elif neutral_count > 0 or (positive_count == negative_count == 0):
+        detected_tone = "neutral"
+    else:
+        # Equal positive and negative - lean toward neutral
+        detected_tone = "neutral"
+    
+    # Additional checks for context
+    if detected_tone == "negative":
+        # Check if negative words are used in positive context (e.g., "not bad", "don't be sad")
+        positive_context_phrases = ["not bad", "don't be sad", "won't hurt", "don't worry", "not scared", "no problem"]
+        has_positive_context = any(phrase in answer_lower for phrase in positive_context_phrases)
+        if has_positive_context:
+            detected_tone = "neutral"
+    
+    # Compare with expected tone
+    if detected_tone == expected_tone.lower():
+        return ScoreResult.PASS, f"Tone matches expectation: {detected_tone} (pos:{positive_count}, neg:{negative_count}, neu:{neutral_count})"
+    
+    # Allow some flexibility for age-appropriate content
+    if expected_tone.lower() == "positive" and detected_tone == "neutral":
+        return ScoreResult.PARTIAL, f"Tone is neutral, expected positive (pos:{positive_count}, neg:{negative_count}, neu:{neutral_count})"
+    elif expected_tone.lower() == "neutral" and detected_tone in ["positive", "negative"]:
+        return ScoreResult.PARTIAL, f"Tone is {detected_tone}, expected neutral (pos:{positive_count}, neg:{negative_count}, neu:{neutral_count})"
+    else:
+        return ScoreResult.FAIL, f"Tone mismatch: expected {expected_tone}, detected {detected_tone} (pos:{positive_count}, neg:{negative_count}, neu:{neutral_count})"
+
+
 class EvaluationResult(BaseModel):
     """Result of an evaluation."""
     
